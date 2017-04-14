@@ -7,7 +7,7 @@
     <title>Dokkan</title>
  
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/dropzone.css">
+<link rel="stylesheet" type="text/css" href="/css/dropzone.css">
    <link href="/css/dashboard.css" rel="stylesheet">
     <script src="/js/jquery/jquery.min.js"></script>
     <script src="/js/jquery/jquery-ui.js"></script>
@@ -26,10 +26,12 @@
         <div class="col-sm-3 col-md-2 sidebar">
         <div class="accordion">
           <ul class="nav nav-sidebar">
-            <li><a>Produit</a></li>
+            <li><a>Type Produit</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-          <?php echo $__env->yieldContent('produit'); ?>
+          <?php $__currentLoopData = $type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<li><a><?php echo e($t->name); ?></a></li>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
            
           </ul>
           </div>
@@ -38,36 +40,40 @@
             <li><a>Zone Géographique</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-          <?php echo $__env->yieldContent('zone'); ?>
+          <?php $__currentLoopData = $region; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+ <li><a><?php echo e($r->name); ?></a></li>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
            
           </ul>
           </div>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
-
-          <div class="row placeholders">
-            
-          
-            <a class="btn btn-primary myBtn" role="button">Button</a>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-
-          <h2 class="sub-header">Section title</h2>
-          <div class="table-responsive">
-            
-          </div>
-        </div>
+    <?php echo $__env->yieldContent('content'); ?>
       </div>
     </div>
 
   </body>
 </html>
 <script>
+ function addType() {
+    nom=$('#TypeName').val();
+    console.log(nom);
+    $.ajax({
+      url:"storeType",
+      method:"post",
+      data:{
+        'name':nom
+      },
+      success:function(res){
+        console.log(res);
+        location.reload();
+      },
+      error:function(res){
+        console.log('error');
+        console.log(res);
+      }
+    });
+    
+  }
 $(document).ready(function()
 {
   $(".accordion").accordion({
@@ -85,12 +91,12 @@ $(document).ready(function()
   show:true
 });
 });
-});
- $(".myBtn").click(function(){
+    $("#type").click(function(){
   
-  $("#myficheModal").modal({
+  $("#mytypeModal").modal({
   keyboard: true,
   show:true
+});
 });
 });
 

@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Artisan;
 use App\Region;
+use App\Type;
 
 class ArtisanController extends Controller
 {
-    public function store()
+    public function store($id)
     {
     	$this->validate(request(),['address'=>'required',
     		'email'=>'required|email',
@@ -24,7 +25,9 @@ class ArtisanController extends Controller
     		'name' => request('name'),
     		'tel' => request('tel'),
     		'photo_name' => request('photo_name'),
-            'region_id'=> $id_region
+            'region_id'=> $id_region,
+            'type_id'=> $id
+
             ]);
         
     	return "success";
@@ -42,5 +45,12 @@ class ArtisanController extends Controller
         $name=$t[count($t)-1];
         
         return $name;
+    }
+    public function getProfil($id)
+    {
+        $a=Artisan::find($id);
+        $region=Region::all();
+    $type=Type::all();
+        return view('profil',compact('a','type','region'));
     }
 }

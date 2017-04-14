@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArtisanTable extends Migration
+class CreateCategorieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,9 @@ class CreateArtisanTable extends Migration
      */
     public function up()
     {
-        Schema::create('artisans', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
-            $table->text('address');
-            $table->string('email')->unique();
             $table->string('name');
-            $table->string('tel');
-            $table->string('photo_name');
-            $table->integer('region_id');
-            $table->integer('type_id');
             $table->timestamps();
         });
     }
@@ -34,6 +27,6 @@ class CreateArtisanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artisans');
+        Schema::dropIfExists('categories');
     }
 }

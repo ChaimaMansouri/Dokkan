@@ -7,7 +7,7 @@
     <title>Dokkan</title>
  
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/dropzone.css">
+<link rel="stylesheet" type="text/css" href="/css/dropzone.css">
    <link href="/css/dashboard.css" rel="stylesheet">
     <script src="/js/jquery/jquery.min.js"></script>
     <script src="/js/jquery/jquery-ui.js"></script>
@@ -26,10 +26,12 @@
         <div class="col-sm-3 col-md-2 sidebar">
         <div class="accordion">
           <ul class="nav nav-sidebar">
-            <li><a>Produit</a></li>
+            <li><a>Type Produit</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-          @yield('produit')
+          @foreach($type as $t)
+<li><a>{{$t->name}}</a></li>
+@endforeach
            
           </ul>
           </div>
@@ -38,36 +40,40 @@
             <li><a>Zone Géographique</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-          @yield('zone')
+          @foreach($region as $r)
+ <li><a>{{$r->name}}</a></li>
+@endforeach
            
           </ul>
           </div>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
-
-          <div class="row placeholders">
-            
-          
-            <a class="btn btn-primary myBtn" role="button">Button</a>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-
-          <h2 class="sub-header">Section title</h2>
-          <div class="table-responsive">
-            
-          </div>
-        </div>
+    @yield('content')
       </div>
     </div>
 
   </body>
 </html>
 <script>
+ function addType() {
+    nom=$('#TypeName').val();
+    console.log(nom);
+    $.ajax({
+      url:"storeType",
+      method:"post",
+      data:{
+        'name':nom
+      },
+      success:function(res){
+        console.log(res);
+        location.reload();
+      },
+      error:function(res){
+        console.log('error');
+        console.log(res);
+      }
+    });
+    
+  }
 $(document).ready(function()
 {
   $(".accordion").accordion({
@@ -85,12 +91,12 @@ $(document).ready(function()
   show:true
 });
 });
-});
- $(".myBtn").click(function(){
+    $("#type").click(function(){
   
-  $("#myficheModal").modal({
+  $("#mytypeModal").modal({
   keyboard: true,
   show:true
+});
 });
 });
 

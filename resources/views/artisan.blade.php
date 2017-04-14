@@ -15,7 +15,15 @@
            <br><br>
       
             <br>
-         
+          <select class="form-control" name="type" id="typeName" required>
+    @foreach($type as $t)
+    <option value="{{$t->id}}">{{$t->name}}</option>
+   
+   
+     
+
+    @endforeach
+    </select>
            </div>
 
            <div class="col-md-8">
@@ -56,7 +64,7 @@
 <script>
  
   function addartisan()
-  {
+  { 
     id=$(".up_photo").attr('id');
     address=$("#address").val();
     description=$("#description").val();
@@ -64,10 +72,12 @@
     email=$("#email").val();
     tel=$("#tel").val();
     region=$("#region").val();
-   
+
+    idtype=$('#typeName option:selected').val();
+   url_nom="/store/"+idtype;
 
     $.ajax({
-      url:"/store",
+      url:url_nom,
       method:'POST',
       data:{
         'address':address,
@@ -76,7 +86,8 @@
         'email':email,
         'tel':tel,
         'photo_name':id,
-        'region':region
+        'region':region,
+        
       },
  success:function(res){
 console.log(res);

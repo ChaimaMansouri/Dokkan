@@ -17,7 +17,7 @@ class CreateProduitTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('photo_produit');
-            $table->integer('type_id');
+            $table->integer('categorie_id');
             $table->integer('artisan_id');
             $table->timestamps();
         });
