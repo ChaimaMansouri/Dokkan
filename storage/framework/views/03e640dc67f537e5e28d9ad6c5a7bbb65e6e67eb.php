@@ -53,7 +53,45 @@
 
   </body>
 </html>
-<script>
+<script> 
+function addartisan()
+  { 
+    id=$(".up_photo").attr('id');
+    address=$("#address").val();
+    description=$("#description").val();
+    name=$("#name").val();
+    email=$("#email").val();
+    tel=$("#tel").val();
+    region=$("#region option:selected").val();
+
+    idtype=$('#typeName option:selected').val();
+   
+    $.ajax({
+      url:"/store",
+      method:'POST',
+      data:{
+        'address':address,
+        'description':description,
+        'name':name,
+        'email':email,
+        'tel':tel,
+        'photo_name':id,
+        'region':region,
+        'type':idtype
+      },
+ success:function(res){
+console.log(res);
+ document.location.href="/";
+
+  },
+  error:function(res){
+    console.log(res);
+   
+  }
+    });
+
+  }
+ 
  function addType() {
     nom=$('#TypeName').val();
     console.log(nom);
@@ -83,6 +121,10 @@ $(document).ready(function()
     event:"click",
     heightStyle:"content"
   });
+  
+
+    $('[data-toggle="tooltip"]').tooltip();   
+
    $("a").css("cursor","pointer");
   $("#artisan").click(function(){
   
@@ -98,7 +140,222 @@ $(document).ready(function()
   show:true
 });
 });
+    $("#listeArtisan").click(function()
+    {
+      $("#mylistArtisanModal").modal({
+  keyboard: true,
+  show:true
+});
+    });
+     $("#listeType").click(function()
+    {
+      $("#modallistetype").modal({
+  keyboard: true,
+  show:true
+});
+    });
+
 });
 
+function suppType(id)
+{
+  $.ajax({
+    url:"/suppt",
+    method:"post",
+    data:{
+      'id':id
+    },
+    success:function(res){
+      if(res=="error"){
+        alert('Il existe un artisan avec ce type');
+      }
+      else{
 
+      var resultat= JSON.parse(res);
+      var a="";
+      $(resultat).each(function(index,item){
+
+ a+="<tr><td>"+this.id+'</td><td>'+this.name+"</td><td><a onclick=\"return updateType('"+this.id+"','"+this.name+"');\">éditer</a> | <a onclick=\"return suppType('+this.id+');\">supprimer</a></td></tr>";
+        });
+      a="<tbody>"+a+"</tbody>";
+      $("#tabletype").children().remove();
+      $("#tabletype").append(a);
+       $("a").css("cursor","pointer");
+         }
+       },
+    error:function(res){
+      console.log('error');
+      console.log(res);
+    }
+  });
+}
+function updateType(id,name)
+{
+    $("#modallistetype").modal('hide');
+   $("#mytypeModalupdate").modal({
+  keyboard: true,
+  show:true
+});
+  $("#TypeNameupdate").val(name);
+
+$("#updateTypebtn").click(function(){
+  nom=$("#TypeNameupdate").val();
+  $.ajax({
+    url:"/updatet",
+    method:"post",
+    data:{
+      'id':id,
+      'name':nom
+    },
+    success:function(res){
+ 
+      $("#mytypeModalupdate").modal('hide');
+      var resultat= JSON.parse(res);
+      var a="";
+      $(resultat).each(function(index,item){
+
+ a+="<tr><td>"+this.id+'</td><td>'+this.name+'</td><td><a onclick="return updateType("'+this.id+'","'+this.name+'");">éditer</a> | <a onclick="return suppType('+this.id+');">supprimer</a></td></tr>';
+        });
+      a="<tbody>"+a+"</tbody>";
+
+      $("#tabletype").children().remove();
+      $("#tabletype").append(a);
+       $("a").css("cursor","pointer");
+      $("#modallistetype").modal({
+  keyboard: true,
+  show:true
+});
+   
+    },
+    error:function(res){
+      console.log('error');
+      console.log(res);
+    }
+  });
+});
+
+}
+function suppArtisan(id)
+{
+  $.ajax({
+    url:"/suppartisan",
+    method:"post",
+    data:{
+      'id':id
+    },
+    success:function(res){
+   
+        var resultat= JSON.parse(res);
+      var a="";
+      $(resultat).each(function(index,item){
+
+ a+="<tr><td>"+this.id+'</td><td><a href="/profil/'+this.id+' data-toggle="tooltip" data-placement="top" title="visiter le profil de '+this.name+'"">'+this.name+'</a></td><td><a onclick="updateArtisan('+this.id+');">éditer</a> | <a onclick="suppArtisan('+this.id+');">supprimer</a></td></tr>';
+        });
+      a="<tbody>"+a+"</tbody>";
+
+      $("#artisantable").children().remove();
+      $("#artisantable").append(a);
+       $("a").css("cursor","pointer");
+      $("#mylistArtisanModal").modal({
+  keyboard: true,
+  show:true
+});
+      
+    },
+    error:function(res){
+      console.log('error');
+      console.log(res);
+    }
+  });
+}
+function  updateArtisan(id){
+  $.ajax({
+    url:"/getArtisan",
+    method:"post",
+    data:{
+      'id':id
+    },
+    success:function(res){
+      var r=JSON.parse(res);
+        $("#mylistArtisanModal").modal('hide');
+      console.log(r.id);
+   $("#myModal input[name='name']").val(r.name);
+   $("#myModal textarea[name='description']").val(r.description);
+   $("#myModal input[name='email']").val(r.email);
+   $("#myModal input[name='Address']").val(r.address);
+   $("#myModal input[name='tel']").val(r.tel);
+   $("#myModal select[name='region']").val(r.region_id);
+   $("#myModal select[name='type']").val(r.type_id);
+  
+   $.ajax({
+url:"/uploadPhoto",
+method:"post",
+data:{
+  'file':r.photo_name
+},
+success:function(res){
+  console.log(res);
+},
+error:function(res){
+  console.log('error');
+  console.log(res);
+}
+   });
+      $('#myModal').modal({
+   keyboard: true,
+  show:true
+});
+    },
+    error:function(res){
+      console.log('error');
+      console.log(res);
+    }
+  });
+
+}
+function canceltype()
+{
+  $('#mytypeModalupdatedivartisan #TypeNameupdate').val("");
+  $('#mytypeModal #TypeName').val("");
+
+  $("#mytypeModalupdate").modal('hide');
+  $("#mytypeModal").modal('hide');
+
+}
+function cancelartisan()
+{
+  id=$(".up_photo").attr('id');
+ $("#myModal input").val("");
+  $("#myModal textarea").val("");
+   $("#myModal select[name='region']").val($("select[name='region'] option:first").val());
+   $("#myModal select[name='type']").val($("select[name='type'] option:first").val());
+
+ a="<form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzone\"><div class=\"dz-default dz-message\"><span>Drop Photo here to upload</span></div></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
+
+
+ $("#myModal #divartisan").children().remove();
+ $("#myModal #divartisan").append(a);
+  $("#myModal #dropzone").dropzone({
+url:"/uploadPhoto",
+maxFiles:"1",
+method : "post"
+});
+  
+  if (id) {
+    $.ajax({
+      url:"/suppPhoto",
+      method:"post",
+      data:{
+        'delPhoto':id
+      },
+      success:function(res){
+        console.log(res);
+      },
+      error:function(res){
+        console.log('error');
+        console.log(res);
+      }
+    });
+  }
+}
 </script>

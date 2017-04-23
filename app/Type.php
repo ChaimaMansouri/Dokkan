@@ -14,12 +14,4 @@ class Type extends Model
     	return $this->hasMany(Artisan::class);
     }
  
- 	 public function getId($type)
-    {
-    	$r=Type::where('name',$type)->get();
-            foreach ($r as $pos => $rr) {
-                $id=$rr->id;
-            }
-            return $id;
-    }
 }

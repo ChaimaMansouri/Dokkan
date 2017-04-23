@@ -14,8 +14,8 @@ class Artisan extends Model
     {
     	return $this->belongsTo(Region::class);
     }
-     public function types()
+     public function type()
     {
-    	return $this->hasMany(Type::class);
+    	return $this->belongsTo(Type::class);
     }
 }

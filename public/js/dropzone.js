@@ -281,6 +281,7 @@
                             e.stopPropagation();
                             if (file.status === Dropzone.UPLOADING) {
                                 return Dropzone.confirm(_this.options.dictCancelUploadConfirmation, function() {
+                
                                     return _this.removeFile(file);
                                 });
                             } else {
@@ -308,6 +309,22 @@
                 if (file.previewElement) {
                     if ((_ref = file.previewElement) != null) {
                         _ref.parentNode.removeChild(file.previewElement);
+                        idp=file.previewElement.id;
+                         $.ajax({
+                    url:"/suppPhoto",
+                    method:"post",
+                    data: {
+                        'delPhoto':idp
+                    },
+                    success:function(res)
+                    {
+                        console.log(res);
+                    },
+                    error:function(res){
+                        console.log('error');
+                        console.log(res);
+                    }
+                });
                     }
                 }
                 return this._updateMaxFilesReachedClass();

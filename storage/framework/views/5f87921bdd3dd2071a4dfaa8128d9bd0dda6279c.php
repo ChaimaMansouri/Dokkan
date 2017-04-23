@@ -13,12 +13,9 @@
   <br></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="return canceltype();">Annuler</button>
         <button type="submit" class="btn btn-primary" onclick="return addType()">Sauvgarder</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<script type="text/javascript">
- 
-</script>

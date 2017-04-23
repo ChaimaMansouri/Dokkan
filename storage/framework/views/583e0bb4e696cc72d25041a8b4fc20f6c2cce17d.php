@@ -6,11 +6,30 @@
         <div class="container">
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a id="artisan">Ajouter Artisan</a></li>
+            <li>
+            <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <label>Artisan</label> <i class="glyphicon glyphicon-plus"></i>
+  </a>
+             <div class="dropdown-menu">
+<a class="btn" id="artisan">Ajouter Artisan</a>
+  <a class="btn" id="listeArtisan">Lister Artisan</a>
+  </div>
+            </li>
             <?php echo $__env->make('artisan', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-            <li><a id="type">Ajouter Type</a></li>
+           <?php echo $__env->make('listeArtisan', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <li>
+                  <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   <label><strong>Type</strong></label> <i class="glyphicon glyphicon-plus"></i>
+
+  </a>
+             <div class="dropdown-menu">
+<a class="btn" id="type">Ajouter Type</a>
+  <a class="btn" id="listeType">Lister Type</a>
+  </div>
+            </li>
             <?php echo $__env->make('type', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-            <li><a href="#">Profil</a></li>
+            <?php echo $__env->make('listeType', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('updateType', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
            
           </ul>
           

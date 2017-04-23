@@ -11,6 +11,7 @@ html {
 }
 body {
   margin: 0;
+  overflow: scroll;
 }
 article,
 aside,
@@ -5945,6 +5946,7 @@ button.close {
 .modal-body {
   position: relative;
   padding: 15px;
+  overflow-y: auto;
 }
 .modal-footer {
   padding: 15px;

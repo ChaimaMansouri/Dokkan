@@ -6,18 +6,18 @@ use Illuminate\Http\Request;
 use App\Artisan;
 use App\Region;
 use App\Type;
-
+use Illuminate\Support\Facades\Storage;
 class ArtisanController extends Controller
 {
-    public function store($id)
+    public function store()
     {
     	$this->validate(request(),['address'=>'required',
     		'email'=>'required|email',
     		'tel'=>'required',
     		'name'=>'required'
     		]);
-            $region=new Region;
-            $id_region=$region->getId(request('region'));
+        
+           
     	Artisan::create([
     		'address' => request('address'),
     		'description' => request('description'),
@@ -25,9 +25,8 @@ class ArtisanController extends Controller
     		'name' => request('name'),
     		'tel' => request('tel'),
     		'photo_name' => request('photo_name'),
-            'region_id'=> $id_region,
-            'type_id'=> $id
-
+            'region_id'=> request('region'),
+            'type_id'=> request('type')
             ]);
         
     	return "success";
@@ -38,7 +37,7 @@ class ArtisanController extends Controller
        	$name="";
         if ($file) 
         {
-        $path=$file->store('public/photo');
+        $path=$file->store('photo');
         }
         $t=explode('/',$path);
 
@@ -46,11 +45,35 @@ class ArtisanController extends Controller
         
         return $name;
     }
+     public function delete_photo()
+    {
+        $img=request('delPhoto');
+         Storage::delete('photo/'.$img);
+         return "success";
+    }
     public function getProfil($id)
     {
-        $a=Artisan::find($id);
+        $type=Type::all();
         $region=Region::all();
-    $type=Type::all();
-        return view('profil',compact('a','type','region'));
+        $artisan=Artisan::all();
+        $a=Artisan::find($id);
+        return view('profil',compact('a','region','type','artisan'));
     }
+    public function getArtisan()
+    {
+        $a=Artisan::find(request('id'));
+        $j=$a->toJson();
+        return response()->json($j);
+    }
+    public function destroy()
+    {
+        $a=Artisan::find(request('id'));
+        $im=$a->photo_name;
+        Storage::delete('photo/'.$im);
+        $a->delete();
+       $all=Artisan::all();
+        $j=$all->toJson();
+        return response()->json($j);
+    }
+
 }

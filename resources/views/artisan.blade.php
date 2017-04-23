@@ -8,20 +8,18 @@
       <div class="modal-body">
       <div class="row">
         <div class="col-md-4">
+        <div id="divartisan">
           <form method="POST" action="/uploadPhoto"  class="dropzone dz-clickable" id="dropzone">
  
             </form>
            <input type="file" name="file" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+           </div>
            <br><br>
       
             <br>
           <select class="form-control" name="type" id="typeName" required>
     @foreach($type as $t)
     <option value="{{$t->id}}">{{$t->name}}</option>
-   
-   
-     
-
     @endforeach
     </select>
            </div>
@@ -35,7 +33,7 @@
     <br><label class="col-3 col-form-label">E-mail:</label>
     <div class="col-5">
     <input class="form-control" type="text" name="email" placeholder="exemple@gmail.com" required="required" id="email"><br></div>
-     <br><label class="col-3 col-form-label">Addresse:</label>
+     <br><label class="col-3 col-form-label">Adresse:</label>
     <div class="col-5">
     <input class="form-control" type="text" name="Address" placeholder="23- chedli kallela lafayette" required="required" id="address"><br></div>
     <br><label class="col-3 col-form-label">Telephone:</label>
@@ -46,7 +44,7 @@
     <label class="col-3 col-form-label">Region:</label>
     <select class="form-control" name="region" id="region" required>
     @foreach($region as $r)
-    <option>{{$r->name}}</option>
+    <option value="{{$r->id}}">{{$r->name}}</option>
     @endforeach
     </select>
     
@@ -55,50 +53,9 @@
       </div>
       <br> <br>  
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="return cancelartisan();">Annuler</button>
         <button type="submit" class="btn btn-primary" onclick="return addartisan();">Sauvgarder</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<script>
- 
-  function addartisan()
-  { 
-    id=$(".up_photo").attr('id');
-    address=$("#address").val();
-    description=$("#description").val();
-    name=$("#name").val();
-    email=$("#email").val();
-    tel=$("#tel").val();
-    region=$("#region").val();
-
-    idtype=$('#typeName option:selected').val();
-   url_nom="/store/"+idtype;
-
-    $.ajax({
-      url:url_nom,
-      method:'POST',
-      data:{
-        'address':address,
-        'description':description,
-        'name':name,
-        'email':email,
-        'tel':tel,
-        'photo_name':id,
-        'region':region,
-        
-      },
- success:function(res){
-console.log(res);
- document.location.href="/";
-
-  },
-  error:function(res){
-    console.log(res);
-   
-  }
-    });
-
-  }
-</script>
