@@ -73,26 +73,5 @@ class ArtisanController extends Controller
         $j=$all->toJson();
         return response()->json($j);
     }
-    public function updateArtisan()
-    {
-        $this->validate(request(),['address'=>'required',
-            'email'=>'required|email',
-            'tel'=>'required',
-            'name'=>'required'
-            ]);  
-            $artisan=Artisan::find(request('id'))->update([
-            'address' => request('address'),
-            'description' => request('description'),
-            'email' => request('email'),
-            'name' => request('name'),
-            'tel' => request('tel'),
-            'photo_name' => request('photo_name'),
-            'region_id'=> request('region'),
-            'type_id'=> request('type')
-            ]);
-            $ar=Artisan::all();
-      $json=$ar->toJson();
-      return response()->json($json);
-    }
 
 }

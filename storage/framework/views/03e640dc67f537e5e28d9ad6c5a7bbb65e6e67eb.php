@@ -293,7 +293,7 @@ function  updateArtisan(id){
 
    $('#myModalupdate #divartisanupdate').children().remove();
 
-   drop=" <form attribute=\""+r.id+"\" method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\"></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
+   drop=" <form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\"></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
 $('#myModalupdate #divartisanupdate').append(drop);
  $("#myModal #dropzoneup").dropzone({
 url:"/uploadPhoto",
@@ -310,6 +310,7 @@ $('#myModalupdate').on('shown.bs.modal',function(){
 $('body').attr('class','modal-open');
 });
 
+console.log($('body'));
     },
     error:function(res){
       console.log('error');
@@ -408,56 +409,5 @@ console.log('error');
 console.log(res);
 }
 });
-}
-function upartisan(idart)
-{
-   id=$(".up_photo").attr('id');
-   name=$("#myModalupdate input[name='name']").val();
-   description=$("#myModalupdate textarea[name='description']").val();
-   email=$("#myModalupdate input[name='email']").val();
-   address=$("#myModalupdate input[name='Address']").val();
-   tel=$("#myModalupdate input[name='tel']").val();
-   region=$("#myModalupdate #regionup option:selected").val();
-   idtype=$("#myModalupdate #typeup option:selected").val();
-   
-    $.ajax({
-      url:"/upArtisan",
-      method:'POST',
-      data:{
-        'address':address,
-        'description':description,
-        'name':name,
-        'email':email,
-        'tel':tel,
-        'photo_name':id,
-        'region':region,
-        'type':idtype,
-        'id':idart
-      },
- success:function(res){
-
-var resultat= JSON.parse(res);
-      var a="";
-      $(resultat).each(function(index,item){
-
- a+="<tr><td>"+this.id+'</td><td><a href="/profil/'+this.id+' data-toggle="tooltip" data-placement="top" title="visiter le profil de '+this.name+'"">'+this.name+'</a></td><td><a onclick="updateArtisan('+this.id+');">éditer</a> | <a onclick="suppArtisan('+this.id+');">supprimer</a></td></tr>';
-        });
-      a="<tbody>"+a+"</tbody>";
-
-      $("#artisantable").children().remove();
-      $("#artisantable").append(a);
-       $("a").css("cursor","pointer");
-       $('#myModalupdate').modal('hide');
-      $("#mylistArtisanModal").modal({
-  keyboard: true,
-  show:true
-});
-
-  },
-  error:function(res){
-    console.log(res);
-   
-  }
-    });
 }
 </script>

@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Mettre à jour Artisan</h4>
+        <h4 class="modal-title">Ajouter Artisan</h4>
       </div>
       <div class="modal-body">
       <div class="row">
@@ -17,7 +17,7 @@
            <br><br>
       
             <br>
-          <select class="form-control" name="typeup" id="typeup" required>
+          <select class="form-control" name="type"  required>
     <?php $__currentLoopData = $type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <option value="<?php echo e($t->id); ?>"><?php echo e($t->name); ?></option>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -42,7 +42,7 @@
   <span class="input-group-addon" id="sizing-addon11">+216</span>
     <input class="form-control" type="text" name="tel" placeholder="23260645" pattern="\d{8}" required="required" ><br></div><br><br>
     <label class="col-3 col-form-label">Region:</label>
-    <select class="form-control" name="region" id="regionup" required>
+    <select class="form-control" name="region" required>
     <?php $__currentLoopData = $region; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <option value="<?php echo e($r->id); ?>"><?php echo e($r->name); ?></option>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -54,7 +54,7 @@
       <br> <br>  
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="return cancelartisanupdate();">Annuler</button>
-        <button type="submit" class="btn btn-primary" onclick="return upartisan($('#dropzoneup').attr('attribute'));">Sauvgarder</button>
+        <button type="submit" class="btn btn-primary" onclick="return upartisan();">Sauvgarder</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
