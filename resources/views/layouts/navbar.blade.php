@@ -17,6 +17,7 @@
             </li>
             @include('artisan')
            @include('listeArtisan')
+           @include('updateArtisan')
             <li>
                   <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    <label><strong>Type</strong></label> <i class="glyphicon glyphicon-plus"></i>
@@ -30,6 +31,7 @@
             @include('type')
             @include('listeType')
             @include('updateType')
+            @include('erreursupp')
            
           </ul>
           

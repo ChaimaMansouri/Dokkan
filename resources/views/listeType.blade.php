@@ -16,7 +16,8 @@
    
    <table class="table" id="tabletype">
     @foreach($type as $t)
-    <tr><td>{{$t->id}}</td><td>{{$t->name}}</td><td><a onclick="return updateType('{{$t->id}}','{{$t->name}}');">éditer</a> | <a onclick="return suppType({{$t->id}});">supprimer</a></td></tr>
+    <tr><td>{{$t->id}}</td><td>{{$t->name}}</td><td><a onclick="return updateType('{{$t->id}}','{{$t->name}}');">éditer</a>  |  <a onclick="return suppType({{$t->id}});">supprimer</a>
+    </td></tr>
     @endforeach
   </table>
     

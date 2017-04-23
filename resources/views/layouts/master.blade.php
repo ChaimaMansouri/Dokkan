@@ -167,7 +167,10 @@ function suppType(id)
     },
     success:function(res){
       if(res=="error"){
-        alert('Il existe un artisan avec ce type');
+        $('#supperreur').modal({
+  keyboard: true,
+  show:true
+});
       }
       else{
 
@@ -278,33 +281,37 @@ function  updateArtisan(id){
     success:function(res){
       var r=JSON.parse(res);
         $("#mylistArtisanModal").modal('hide');
-      console.log(r.id);
-   $("#myModal input[name='name']").val(r.name);
-   $("#myModal textarea[name='description']").val(r.description);
-   $("#myModal input[name='email']").val(r.email);
-   $("#myModal input[name='Address']").val(r.address);
-   $("#myModal input[name='tel']").val(r.tel);
-   $("#myModal select[name='region']").val(r.region_id);
-   $("#myModal select[name='type']").val(r.type_id);
-  
-   $.ajax({
-url:"/uploadPhoto",
-method:"post",
-data:{
-  'file':r.photo_name
-},
-success:function(res){
-  console.log(res);
-},
-error:function(res){
-  console.log('error');
-  console.log(res);
-}
-   });
-      $('#myModal').modal({
+        $('#myModalupdate').modal({
    keyboard: true,
   show:true
 });
+      console.log(r.id);
+   $("#myModalupdate input[name='name']").val(r.name);
+   $("#myModalupdate textarea[name='description']").val(r.description);
+   $("#myModalupdate input[name='email']").val(r.email);
+   $("#myModalupdate input[name='Address']").val(r.address);
+   $("#myModalupdate input[name='tel']").val(r.tel);
+   $("#myModalupdate select[name='region']").val(r.region_id);
+   $("#myModalupdate select[name='type']").val(r.type_id);
+  
+   aph="<div class=\"dz-preview up_photo dz-processing dz-image-preview dz-success dz-complete\" id=\""+r.photo_name+"\"><div class=\"dz-image\"><img data-dz-thumbnail=\"\" alt=\""+r.photo_name+"\" src=\"/storage/photo/"+r.photo_name+"\" width=\"100%\" height=\"100%\"></div>  <div class=\"dz-details\"><div class=\"dz-size\"><span data-dz-size=\"\"><strong>56.8</strong> KB</span></div> <div class=\"dz-filename\"><span data-dz-name=\"\">"+r.photo_name+"</span></div> </div>  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress=\"\" style=\"width: 100%;\"></span></div>  <div class=\"dz-error-message\"><span data-dz-errormessage=\"\"></span></div><div class=\"dz-success-mark\">    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\"><title>Check</title> <defs></defs><g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\"> </g> </g></svg></div><a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove=\"\" onclick=\"removephoto('"+r.photo_name+"');\">Remove file</a></div>";
+
+   $('#myModalupdate #divartisanupdate').children().remove();
+
+   drop=" <form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\"></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
+$('#myModalupdate #divartisanupdate').append(drop);
+ $("#myModal #dropzoneup").dropzone({
+url:"/uploadPhoto",
+maxFiles:"1",
+method : "post"
+});
+
+$('#myModalupdate #dropzoneup').append(aph);
+$('#myModalupdate').on('shown.bs.modal',function(){
+$('body').attr('class','modal-open');
+});
+
+console.log($('body'));
     },
     error:function(res){
       console.log('error');
@@ -357,5 +364,51 @@ method : "post"
       }
     });
   }
+}
+function cancelartisanupdate(){
+  $("#myModalupdate input").val("");
+  $("#myModalupdate textarea").val("");
+   $("#myModalupdate select[name='region']").val($("select[name='region'] option:first").val());
+   $("#myModalupdate select[name='type']").val($("select[name='type'] option:first").val());
+
+ a="<form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzone\"><div class=\"dz-default dz-message\"><span>Drop Photo here to upload</span></div></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
+
+
+ $("#myModalupdate #divartisan").children().remove();
+ $("#myModalupdate #divartisan").append(a);
+  $("#myModalupdate #dropzone").dropzone({
+url:"/uploadPhoto",
+maxFiles:"1",
+method : "post"
+});
+  
+}
+function removephoto(idphoto)
+{
+
+         $.ajax({
+                    url:"/suppPhoto",
+                    method:"post",
+                    data: {
+                        'delPhoto':idphoto
+                    },
+                    success:function(res)
+                    {
+                        console.log(res);
+                        $('#myModalupdate #divartisanupdate').children().remove();
+
+   drop=" <form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\"></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
+$('#myModalupdate #divartisanupdate').append(drop);
+ $("#myModal #dropzoneup").dropzone({
+url:"/uploadPhoto",
+maxFiles:"1",
+method : "post"
+});
+},
+error:function(res){
+console.log('error');
+console.log(res);
+}
+});
 }
 </script>

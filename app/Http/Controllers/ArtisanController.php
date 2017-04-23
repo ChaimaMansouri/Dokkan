@@ -15,9 +15,7 @@ class ArtisanController extends Controller
     		'email'=>'required|email',
     		'tel'=>'required',
     		'name'=>'required'
-    		]);
-        
-           
+    		]);    
     	Artisan::create([
     		'address' => request('address'),
     		'description' => request('description'),

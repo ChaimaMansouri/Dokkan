@@ -17,6 +17,7 @@
             </li>
             <?php echo $__env->make('artisan', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
            <?php echo $__env->make('listeArtisan', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+           <?php echo $__env->make('updateArtisan', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <li>
                   <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    <label><strong>Type</strong></label> <i class="glyphicon glyphicon-plus"></i>
@@ -30,6 +31,7 @@
             <?php echo $__env->make('type', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <?php echo $__env->make('listeType', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <?php echo $__env->make('updateType', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('erreursupp', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
            
           </ul>
           
