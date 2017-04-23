@@ -211,7 +211,7 @@ $("#updateTypebtn").click(function(){
       'name':nom
     },
     success:function(res){
- 
+  
       $("#mytypeModalupdate").modal('hide');
       var resultat= JSON.parse(res);
       var a="";
