@@ -23,8 +23,8 @@ class TypeController extends Controller
    }
    public function destroy()
    {
+      $a=Artisan::where('type_id',request('id'))->get()->first();
       
-      $a=Artisan::where('type_id',request('id'));
       if($a)
       {
          return "error";

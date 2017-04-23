@@ -166,7 +166,7 @@ function suppType(id)
       'id':id
     },
     success:function(res){
-      if(res=="error"){
+      if(res==="error"){
         $('#supperreur').modal({
   keyboard: true,
   show:true
@@ -178,7 +178,7 @@ function suppType(id)
       var a="";
       $(resultat).each(function(index,item){
 
- a+="<tr><td>"+this.id+'</td><td>'+this.name+"</td><td><a onclick=\"return updateType('"+this.id+"','"+this.name+"');\">éditer</a> | <a onclick=\"return suppType('+this.id+');\">supprimer</a></td></tr>";
+ a+="<tr><td>"+this.id+'</td><td>'+this.name+"</td><td><a onclick=\"return updateType('"+this.id+"','"+this.name+"');\">éditer</a> | <a onclick=\"return suppType('"+this.id+"');\">supprimer</a></td></tr>";
         });
       a="<tbody>"+a+"</tbody>";
       $("#tabletype").children().remove();
@@ -217,7 +217,7 @@ $("#updateTypebtn").click(function(){
       var a="";
       $(resultat).each(function(index,item){
 
- a+="<tr><td>"+this.id+'</td><td>'+this.name+'</td><td><a onclick="return updateType("'+this.id+'","'+this.name+'");">éditer</a> | <a onclick="return suppType('+this.id+');">supprimer</a></td></tr>';
+ a+="<tr><td>"+this.id+"</td><td>"+this.name+"</td><td><a onclick=\"return updateType('"+this.id+"','"+this.name+"');\">éditer</a> | <a onclick=\"return suppType('"+this.id+"');\">supprimer</a></td></tr>";
         });
       a="<tbody>"+a+"</tbody>";
 
@@ -252,7 +252,7 @@ function suppArtisan(id)
       var a="";
       $(resultat).each(function(index,item){
 
- a+="<tr><td>"+this.id+'</td><td><a href="/profil/'+this.id+' data-toggle="tooltip" data-placement="top" title="visiter le profil de '+this.name+'"">'+this.name+'</a></td><td><a onclick="updateArtisan('+this.id+');">éditer</a> | <a onclick="suppArtisan('+this.id+');">supprimer</a></td></tr>';
+ a+="<tr><td>"+this.id+'</td><td><a href="/profil/'+this.id+'" data-toggle="tooltip" data-placement="top" title="visiter le profil de '+this.name+'"">'+this.name+'</a></td><td><a onclick="updateArtisan('+this.id+');">éditer</a> | <a onclick="suppArtisan('+this.id+');">supprimer</a></td></tr>';
         });
       a="<tbody>"+a+"</tbody>";
 
@@ -286,14 +286,14 @@ function  updateArtisan(id){
    $("#myModalupdate input[name='email']").val(r.email);
    $("#myModalupdate input[name='Address']").val(r.address);
    $("#myModalupdate input[name='tel']").val(r.tel);
-   $("#myModalupdate select[name='region']").val(r.region_id);
-   $("#myModalupdate select[name='type']").val(r.type_id);
+   $("#myModalupdate select[name='regionup']").val(r.region_id);
+   $("#myModalupdate select[name='typeup']").val(r.type_id);
   
-   aph="<div class=\"dz-preview up_photo dz-processing dz-image-preview dz-success dz-complete\" id=\""+r.photo_name+"\"><div class=\"dz-image\"><img data-dz-thumbnail=\"\" alt=\""+r.photo_name+"\" src=\"/storage/photo/"+r.photo_name+"\" width=\"100%\" height=\"100%\"></div>  <div class=\"dz-details\"><div class=\"dz-size\"><span data-dz-size=\"\"><strong>56.8</strong> KB</span></div> <div class=\"dz-filename\"><span data-dz-name=\"\">"+r.photo_name+"</span></div> </div>  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress=\"\" style=\"width: 100%;\"></span></div>  <div class=\"dz-error-message\"><span data-dz-errormessage=\"\"></span></div><div class=\"dz-success-mark\">    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\"><title>Check</title> <defs></defs><g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\"> </g> </g></svg></div><a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove=\"\" onclick=\"removephoto('"+r.photo_name+"');\">Remove file</a></div>";
+   aph="<div class=\"dz-preview up_photo dz-processing dz-image-preview dz-success dz-complete\" id=\""+r.photo_name+"\"><div class=\"dz-image\"><img data-dz-thumbnail=\"\" alt=\""+r.photo_name+"\" src=\"/storage/photo/"+r.photo_name+"\" width=\"100%\" height=\"100%\"></div>  <div class=\"dz-details\"><div class=\"dz-size\"><span data-dz-size=\"\"><strong>56.8</strong> KB</span></div> <div class=\"dz-filename\"><span data-dz-name=\"\">"+r.photo_name+"</span></div> </div>  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress=\"\" style=\"width: 100%;\"></span></div>  <div class=\"dz-error-message\"><span data-dz-errormessage=\"\"></span></div><div class=\"dz-success-mark\">    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\"><title>Check</title> <defs></defs><g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\"> </g> </g></svg></div><a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove=\"\" onclick=\"removephoto('"+r.photo_name+"','"+r.id+"');\">Remove file</a></div>";
 
    $('#myModalupdate #divartisanupdate').children().remove();
 
-   drop=" <form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\"></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
+   drop=" <form attribute=\""+r.id+"\" method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\"></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
 $('#myModalupdate #divartisanupdate').append(drop);
  $("#myModal #dropzoneup").dropzone({
 url:"/uploadPhoto",
@@ -310,7 +310,6 @@ $('#myModalupdate').on('shown.bs.modal',function(){
 $('body').attr('class','modal-open');
 });
 
-console.log($('body'));
     },
     error:function(res){
       console.log('error');
@@ -382,7 +381,7 @@ method : "post"
 });
   
 }
-function removephoto(idphoto)
+function removephoto(idphoto,id)
 {
 
          $.ajax({
@@ -393,12 +392,12 @@ function removephoto(idphoto)
                     },
                     success:function(res)
                     {
-                        console.log(res);
+                        
                         $('#myModalupdate #divartisanupdate').children().remove();
 
-   drop=" <form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\"></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
+   drop="<form method=\"POST\" action=\"/uploadPhoto\"  class=\"dropzone dz-clickable\" id=\"dropzoneup\" attribute=\""+id+"\"><div class=\"dz-default dz-message\"><span>Drop Photo here to upload</span></div></form><input type=\"file\" name=\"file\" class=\"dz-hidden-input\" style=\"visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;\">";
 $('#myModalupdate #divartisanupdate').append(drop);
- $("#myModal #dropzoneup").dropzone({
+ $("#myModalupdate #dropzoneup").dropzone({
 url:"/uploadPhoto",
 maxFiles:"1",
 method : "post"
@@ -409,5 +408,56 @@ console.log('error');
 console.log(res);
 }
 });
+}
+function upartisan(idart)
+{
+   id=$(".up_photo").attr('id');
+   name=$("#myModalupdate input[name='name']").val();
+   description=$("#myModalupdate textarea[name='description']").val();
+   email=$("#myModalupdate input[name='email']").val();
+   address=$("#myModalupdate input[name='Address']").val();
+   tel=$("#myModalupdate input[name='tel']").val();
+   region=$("#myModalupdate #regionup option:selected").val();
+   idtype=$("#myModalupdate #typeup option:selected").val();
+  
+    $.ajax({
+      url:"/upArtisan",
+      method:'POST',
+      data:{
+        'address':address,
+        'description':description,
+        'name':name,
+        'email':email,
+        'tel':tel,
+        'photo_name':id,
+        'region':region,
+        'type':idtype,
+        'id':idart
+      },
+ success:function(res){
+
+var resultat= JSON.parse(res);
+      var a="";
+      $(resultat).each(function(index,item){
+
+ a+="<tr><td>"+this.id+'</td><td><a href="/profil/'+this.id+'" data-toggle="tooltip" data-placement="top" title="visiter le profil de '+this.name+'"">'+this.name+'</a></td><td><a onclick="updateArtisan('+this.id+');">éditer</a> | <a onclick="suppArtisan('+this.id+');">supprimer</a></td></tr>';
+        });
+      a="<tbody>"+a+"</tbody>";
+
+      $("#artisantable").children().remove();
+      $("#artisantable").append(a);
+       $("a").css("cursor","pointer");
+       $('#myModalupdate').modal('hide');
+      $("#mylistArtisanModal").modal({
+  keyboard: true,
+  show:true
+});
+
+  },
+  error:function(res){
+    console.log(res);
+   
+  }
+    });
 }
 </script>

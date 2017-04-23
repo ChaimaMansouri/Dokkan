@@ -17,7 +17,7 @@
            <br><br>
       
             <br>
-          <select class="form-control" name="type"  required>
+          <select class="form-control" name="typeup" id="typeup" required>
     @foreach($type as $t)
     <option value="{{$t->id}}">{{$t->name}}</option>
     @endforeach
@@ -42,7 +42,7 @@
   <span class="input-group-addon" id="sizing-addon11">+216</span>
     <input class="form-control" type="text" name="tel" placeholder="23260645" pattern="\d{8}" required="required" ><br></div><br><br>
     <label class="col-3 col-form-label">Region:</label>
-    <select class="form-control" name="region" required>
+    <select class="form-control" name="regionup" id="regionup" required>
     @foreach($region as $r)
     <option value="{{$r->id}}">{{$r->name}}</option>
     @endforeach
@@ -54,7 +54,7 @@
       <br> <br>  
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="return cancelartisanupdate();">Annuler</button>
-        <button type="submit" class="btn btn-primary" onclick="return upartisan();">Sauvgarder</button>
+        <button type="submit" class="btn btn-primary" onclick="return upartisan($('#dropzoneup').attr('attribute'));">Sauvgarder</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
