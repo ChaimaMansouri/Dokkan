@@ -201,7 +201,7 @@ function updateType(id,name)
 });
   $("#TypeNameupdate").val(name);
 
-$("#updateTypebtn").click(function(){
+$("#updateTypebtn").unbind().click(function(){
   nom=$("#TypeNameupdate").val();
   $.ajax({
     url:"/updatet",
@@ -211,7 +211,7 @@ $("#updateTypebtn").click(function(){
       'name':nom
     },
     success:function(res){
- 
+  
       $("#mytypeModalupdate").modal('hide');
       var resultat= JSON.parse(res);
       var a="";
