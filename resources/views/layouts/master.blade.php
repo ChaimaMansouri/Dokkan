@@ -281,11 +281,6 @@ function  updateArtisan(id){
     success:function(res){
       var r=JSON.parse(res);
         $("#mylistArtisanModal").modal('hide');
-        $('#myModalupdate').modal({
-   keyboard: true,
-  show:true
-});
-      console.log(r.id);
    $("#myModalupdate input[name='name']").val(r.name);
    $("#myModalupdate textarea[name='description']").val(r.description);
    $("#myModalupdate input[name='email']").val(r.email);
@@ -307,6 +302,10 @@ method : "post"
 });
 
 $('#myModalupdate #dropzoneup').append(aph);
+   $('#myModalupdate').modal({
+   keyboard: true,
+  show:true
+});
 $('#myModalupdate').on('shown.bs.modal',function(){
 $('body').attr('class','modal-open');
 });
