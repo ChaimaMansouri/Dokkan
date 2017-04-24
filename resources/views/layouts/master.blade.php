@@ -4,18 +4,16 @@
   <head>
     <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dokkan</title>
- 
+    <title>Dokkan | TunisiaNow </title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/css/dropzone.css">
-   <link href="/css/dashboard.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/dropzone.css">
+	<link href="/css/dashboard.css" rel="stylesheet">
     <script src="/js/jquery/jquery.min.js"></script>
     <script src="/js/jquery/jquery-ui.js"></script>
     <script src="/js/dropzone.js"></script>
-    <script src="/js/bootstrap.js"></script>
-      
-    
-
+    <script src="/js/bootstrap.js"></script>  
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
   </head>
 
   <body>
