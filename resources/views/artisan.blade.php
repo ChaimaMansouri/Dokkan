@@ -20,18 +20,33 @@
                                     @endforeach
                                 </select>
 								<br><br><br>
-								<div id="mapid" class="col-sm-12" style="height:300px;position:relative;"></div>
+								<div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">X</span>
+                                    <input class="form-control" type="text" name="geoX" placeholder="0.0000"required" id="geoX" required>
+                                </div>
+								</div>
+								<div>
+								<div class="input-group">
+                                <span class="input-group-addon">Y</span>
+                                <input class="form-control" type="text" name="geoY" placeholder="0.0000"required" id="geoY" required>
+                                </div>
+								</div>
+								<br><br>
+								<div id="mapid" class="col-sm-12" style="height:250px;position:relative;"></div>
 								<script type="text/javascript">
-
 								var MyMap = L.map('mapid').setView([34.0002968, 10.0803333], 7);
+								function onMapClick(e) {
+								document.getElementById("geoX").value = e.latlng.lat.toString();
+								document.getElementById("geoY").value = e.latlng.lng.toString();
+								;}
 								L.tileLayer ('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2hhaXRodHJvdWRpIiwiYSI6ImNqMXcxZG9kcDAwMHoycXMzZGY2bTNrZnAifQ.j1L_293D_BTc-JUI4B18lw',
 								{
 								attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Développé par TunisiaNow, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 								maxZoom: 18
 								}
 								).addTo(MyMap);
-								L.marker([34.0002968, 10.0803333]).addTo(MyMap)
-								.bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+								MyMap.on('click', onMapClick);
 								</script>
                             </div>
 
@@ -59,11 +74,13 @@
                                 </div>
                                 <br>
                                 <label class="col-3 col-form-label">Telephone:</label>
+								<div class="col-sx-5">
                                 <div class="input-group col-5">
                                     <span class="input-group-addon" id="sizing-addon1">+216</span>
                                     <input class="form-control" type="text" name="tel" placeholder="23260645" pattern="\d{8}" required="required" id="tel">
                                     <br>
                                 </div>
+								</div>
                                 <br><br>
                                 <label class="col-3 col-form-label">Region:</label>
                                 <select class="form-control" name="region" id="region" required>
