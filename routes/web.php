@@ -12,3 +12,6 @@ Route::post('/suppartisan','ArtisanController@destroy');
 Route::post('/suppPhoto','ArtisanController@delete_photo');
 Route::post('/getArtisan','ArtisanController@getArtisan');
 Route::post('/upArtisan','ArtisanController@updateArtisan');
+Route::get('/index',function(){
+	return view('layouts.accueil');
+});
