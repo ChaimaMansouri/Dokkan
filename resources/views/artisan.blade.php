@@ -20,18 +20,15 @@
                                     @endforeach
                                 </select>
 								<br><br><br>
-								<div>
+							
                                 <div class="input-group">
                                     <span class="input-group-addon">X</span>
-                                    <input class="form-control" type="text" name="geoX" placeholder="0.0000"required" id="geoX" required>
-                                </div>
-								</div>
-								<div>
-								<div class="input-group">
+                                    <input class="form-control" type="text" name="geoX" id="geoX" placeholder="0.0000"required" id="geoX" required>
+                                
                                 <span class="input-group-addon">Y</span>
-                                <input class="form-control" type="text" name="geoY" placeholder="0.0000"required" id="geoY" required>
+                                <input class="form-control" type="text" name="geoY" id="geoY" placeholder="0.0000"required" id="geoY" required>
                                 </div>
-								</div>
+							
 								<br><br>
 								<div id="mapid" class="col-sm-12" style="height:250px;position:relative;"></div>
 								<script type="text/javascript">

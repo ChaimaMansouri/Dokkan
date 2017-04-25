@@ -61,9 +61,10 @@ function addartisan()
     email=$("#email").val();
     tel=$("#tel").val();
     region=$("#region option:selected").val();
-
+    x=$("#geoX").val();
+    y=$("#geoY").val();
     idtype=$('#typeName option:selected').val();
-   
+
     $.ajax({
       url:"/store",
       method:'POST',
@@ -75,7 +76,9 @@ function addartisan()
         'tel':tel,
         'photo_name':id,
         'region':region,
-        'type':idtype
+        'type':idtype,
+        'x':x,
+        'y':y
       },
  success:function(res){
 console.log(res);

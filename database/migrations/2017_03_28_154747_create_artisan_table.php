@@ -23,6 +23,8 @@ class CreateArtisanTable extends Migration
             $table->string('photo_name');
             $table->integer('region_id');
             $table->integer('type_id');
+            $table->float('x');
+            $table->float('y');
             $table->timestamps();
         });
     }

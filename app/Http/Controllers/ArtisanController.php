@@ -14,7 +14,11 @@ class ArtisanController extends Controller
     	$this->validate(request(),['address'=>'required',
     		'email'=>'required|email',
     		'tel'=>'required',
-    		'name'=>'required'
+    		'name'=>'required',
+            'type'=>'required',
+            'region'=>'required',
+            'x'=>'required',
+            'y'=>'required'
     		]);    
     	Artisan::create([
     		'address' => request('address'),
@@ -24,7 +28,9 @@ class ArtisanController extends Controller
     		'tel' => request('tel'),
     		'photo_name' => request('photo_name'),
             'region_id'=> request('region'),
-            'type_id'=> request('type')
+            'type_id'=> request('type'),
+            'x'=> request('x'),
+            'y'=>request('y')
             ]);
         
     	return "success";
@@ -78,7 +84,11 @@ class ArtisanController extends Controller
         $this->validate(request(),['address'=>'required',
             'email'=>'required|email',
             'tel'=>'required',
-            'name'=>'required'
+            'name'=>'required',
+            'type'=>'required',
+            'region'=>'required',
+            'x'=>'required',
+            'y'=>'required'
             ]);  
             $artisan=Artisan::find(request('id'))->update([
             'address' => request('address'),
@@ -88,7 +98,9 @@ class ArtisanController extends Controller
             'tel' => request('tel'),
             'photo_name' => request('photo_name'),
             'region_id'=> request('region'),
-            'type_id'=> request('type')
+            'type_id'=> request('type'),
+            'x'=> request('x'),
+            'y'=>request('y')
             ]);
             $ar=Artisan::all();
       $json=$ar->toJson();
