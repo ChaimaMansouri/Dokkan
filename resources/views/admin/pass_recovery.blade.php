@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href={{URL::asset("css/admin/style.css")}} />
     <script src={{URL::asset("js/admin/cufon-yui.js")}} type="text/javascript"></script>
     <script src={{URL::asset("js/admin/admin_log.font.js")}} type="text/javascript"></script>
+    <script type="text/javascript" src="js/admin/log.js"></script>
     <script type="text/javascript">
         Cufon.replace('h1',{ textShadow: '1px 1px #fff'});
         Cufon.replace('h2',{ textShadow: '1px 1px #fff'});
@@ -14,7 +15,7 @@
     <div class="wrapper">
         <div class="content">
             <div id="form_wrapper" class="form_wrapper">
-                <form class="login active" method="POST" action={{url('admin_login')}}>
+                <form class="login">
                     <h3>Login</h3>
                     <div>
                         @if (session()->has('fail'))
@@ -35,7 +36,7 @@
                         <div class="clear"></div>
                     </div>
                 </form>
-                <form class="forgot_password" method="POST" action={{url('admin_test2')}}>
+                <form class="forgot_password active">
                     <h3>Forgot Password</h3>
                     <div>
                         <label>Username or Email:</label>
@@ -55,7 +56,7 @@
 
 
     <!-- The JavaScript -->
-    <script type="text/javascript" src={{URL::asset("public/jquery/jquery.min.js")}}></script>
+    <script type="text/javascript" src={{"jquery/jquery.min.js"}}></script>
     <script type="text/javascript">
         $(function() {
             //the form wrapper (includes all forms)

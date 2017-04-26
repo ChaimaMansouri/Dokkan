@@ -60,7 +60,7 @@ class AdminController extends Controller
             {
                 $fail = 'Your Credentials Need To Be Specified';
 
-                return view('admin2.login_form')->with('fail',$fail);
+                return view('admin.login_form')->with('fail',$fail);
             }
 
             $Admin = Admin::where('username','=',$request->username)->first();
@@ -68,13 +68,13 @@ class AdminController extends Controller
             {
                 $fail = 'Unknown Username';
 
-                return view('admin2.login_form')->with('fail',$fail);
+                return view('admin.login_form')->with('fail',$fail);
             }
 
             if( !password_verify($request->password,$Admin->password) )
             {
                 $fail = 'Unknown Password';
-                return view('admin2.login_form')->with('fail',$fail);
+                return view('admin.login_form')->with('fail',$fail);
             }
 
             $request->session()->flush();
@@ -109,7 +109,7 @@ class AdminController extends Controller
         Cookie::queue( Cookie::forget('username') );
         Cookie::queue( Cookie::forget('password') );
 
-        return view('admin2.login_form');
+        return view('admin.login_form');
     }
 
     public function toolAdmin(Request $request)

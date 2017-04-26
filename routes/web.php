@@ -19,7 +19,7 @@ Route::get('/index',function(){
 // Admin Routes
 Route::get('admin_login',function(){
     session()->reflash();
-    return view('admin/admin_login');
+    return view('admin2.login_form');
 });
 
 Route::get('admin_profile',function(){

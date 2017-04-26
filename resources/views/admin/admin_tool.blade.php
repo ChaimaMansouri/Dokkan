@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin.master')
 
 @section ('admin_manager_css')
     <link rel="stylesheet" type="text/css" href="/css/admin/drop.css"/>

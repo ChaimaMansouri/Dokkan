@@ -8,7 +8,7 @@
 
         @yield ('fail')
 
-        <form method="GET" action={{url("/admin_log")}} class="login-form">
+        <form method="POST" action={{url("/admin_login")}} class="login-form">
             {{csrf_field()}}
             <input type="text" name="username" placeholder="username"/>
             <input type="password" name="password" placeholder="password"/>
