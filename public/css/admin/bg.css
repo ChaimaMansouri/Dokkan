@@ -1,0 +1,4 @@
+.boo{
+    .background-image: url('/images/bg1.jpg');
+    .background-size: cover;
+}
