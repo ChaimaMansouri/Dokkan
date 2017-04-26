@@ -1,0 +1,46 @@
+#accueilmap
+{ height:850px;
+    width: 500px;
+    align: center;
+    position: relative;
+}
+#container
+{
+    padding-top: 200px;
+}
+
+.navbar
+{
+    background-image: url("/storage/noir.jpg");
+    background-repeat: repeat-x;
+    background-size: auto;
+    height: 140px;
+}
+body
+{
+    background-image: url("/storage/back.jpg");
+    background-repeat: repeat;
+}
+
+a > img
+{
+    height: 140px;
+    padding-right: 6%;
+}
+#mapContainer
+{
+    background-image: url("/storage/panel texture.jpg");
+    background-repeat: repeat;
+}
+#TNS
+{
+    padding-top: 18px;
+    height: 120px;
+    padding-left: 2%;
+}
+#beb > img
+{
+    width:100%;
+    height:auto;
+    padding-right:0px;
+}

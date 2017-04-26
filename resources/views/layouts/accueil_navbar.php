@@ -1,11 +1,10 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">Dokkan</a>
-        </div>
-        <div class="container">
-            <div id="navbar" class="navbar-collapse collapse">
-            </div>
-        </div>
+<nav class="navbar  navbar-default navbar-fixed-top">
+<!--    <div >-->
+    <div class="navbar-right">
+            <a><img role="brand" src="/storage/dokkan.jpg" alt="Dokkan"></a>
     </div>
+    <div class="navbar-left">
+             <a><img id="TNS" role="Owner" src="/storage/Logo blanc.jpg" alt="TunisiaNow"></a>
+    </div>
+
 </nav>
