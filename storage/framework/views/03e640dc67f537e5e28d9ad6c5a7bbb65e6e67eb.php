@@ -26,20 +26,19 @@
           <ul class="nav nav-sidebar">
             <li><a>Type Produit</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
+          <ul class="nav nav-sidebar" id="typeSearch">
           <?php $__currentLoopData = $type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-<li><a><?php echo e($t->name); ?></a></li>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-           
+          <li><a attribute="<?php echo e($t->id); ?>"><?php echo e($t->name); ?></a></li>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </ul>
           </div>
             <div class="accordion">
           <ul class="nav nav-sidebar">
             <li><a>Zone Géographique</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
+          <ul class="nav nav-sidebar" id="regionSearch">
           <?php $__currentLoopData = $region; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
- <li><a><?php echo e($r->name); ?></a></li>
+ <li><a attribute="<?php echo e($r->id); ?>"><?php echo e($r->name); ?></a></li>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
            
           </ul>
@@ -155,9 +154,21 @@ $(document).ready(function()
   show:true
 });
     });
-
 });
+function searchArtisan(type,region)
+{
+  if ((type==undefined) & region)
+   {
 
+   }
+   else if(type & (region==undefined))
+   {
+
+   }
+    else if (type & region) {
+
+    }
+}
 function suppType(id)
 {
   $.ajax({
@@ -461,4 +472,5 @@ var resultat= JSON.parse(res);
   }
     });
 }
+
 </script>
