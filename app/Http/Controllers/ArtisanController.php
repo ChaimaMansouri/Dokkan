@@ -106,6 +106,7 @@ class ArtisanController extends Controller
       $json=$ar->toJson();
       return response()->json($json);
     }
+<<<<<<< HEAD
 function getype()
 {
     $a=Artisan::where('type_id',request('idt'))->get();
@@ -118,4 +119,71 @@ function getRegion()
     $j=$a->toJson();
     return response()->json($j);
 }
+=======
+
+    public function findByType(Request $request)
+    {
+        $type_name = $request->type;
+        $res = array();
+
+        if( !$type_name or empty($type_name) )
+        {
+            $res['fail'] = 'Type Non Spécifié';
+            $res = json_encode($res);
+            response($res)->send();
+            die();
+        }
+
+        $type = Type::where('name','=',$type_name)->first();
+
+        if( !$type )
+        {
+            $res['fail'] = 'Type Inconnu';
+            $res = json_encode($res);
+            response($res)->send();
+            die();
+        }
+
+        $artisans = Artisan::where('type','=',$type_name)->get();
+
+        foreach( $artisans as $artisan )
+        {
+            $res[$artisan->name] = $artisan->id;
+        }
+
+        $res = json_encode($res);
+        response($res)->send();
+    }
+
+    public function findByRegion(Request $request)
+    {
+        $this->validate($request,[
+            'region' => 'required|filled'
+        ]);
+
+        $res = array();
+
+        $region = Region::where('name','=',$request->region)->first();
+
+        if( ! $region )
+        {
+            $res['fail'] = 'Region Inconnue';
+            $res = json_encode($res);
+            response($res)->send();
+            die();
+        }
+
+        $artisans = Artisan::where('region','=',$region->id);
+
+        foreach( $artisans as $artisan )
+        {
+            $res[$artisan->name] = $artisan->id;
+        }
+
+        $res = json_encode($res);
+
+        return response($res)->send();
+    }
+
+>>>>>>> ef896a7ff94731724ed0fd589ae5729955dbacbc
 }

@@ -27,19 +27,20 @@
           <ul class="nav nav-sidebar">
             <li><a>Type Produit</a></li>
           </ul>
-          <ul class="nav nav-sidebar" id="typeSearch">
+          <ul class="nav nav-sidebar">
           @foreach($type as $t)
-          <li><a attribute="{{$t->id}}">{{$t->name}}</a></li>
-          @endforeach
+<li><a>{{$t->name}}</a></li>
+@endforeach
+           
           </ul>
           </div>
             <div class="accordion">
           <ul class="nav nav-sidebar">
             <li><a>Zone Géographique</a></li>
           </ul>
-          <ul class="nav nav-sidebar" id="regionSearch">
+          <ul class="nav nav-sidebar">
           @foreach($region as $r)
- <li><a attribute="{{$r->id}}">{{$r->name}}</a></li>
+ <li><a>{{$r->name}}</a></li>
 @endforeach
            
           </ul>
@@ -155,21 +156,9 @@ $(document).ready(function()
   show:true
 });
     });
+
 });
-function searchArtisan(type,region)
-{
-  if ((type==undefined) & region)
-   {
 
-   }
-   else if(type & (region==undefined))
-   {
-
-   }
-    else if (type & region) {
-
-    }
-}
 function suppType(id)
 {
   $.ajax({
@@ -473,5 +462,4 @@ var resultat= JSON.parse(res);
   }
     });
 }
-
 </script>
