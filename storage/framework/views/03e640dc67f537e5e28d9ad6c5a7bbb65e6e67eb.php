@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -8,12 +7,14 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/dropzone.css">
 	<link href="/css/dashboard.css" rel="stylesheet">
+    <?php echo $__env->yieldContent("admin_manager_css"); ?>
     <script src="/js/jquery/jquery.min.js"></script>
     <script src="/js/jquery/jquery-ui.js"></script>
     <script src="/js/dropzone.js"></script>
     <script src="/js/bootstrap.js"></script>  
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <?php echo $__env->yieldContent("admin_manager_js"); ?>
   </head>
 
   <body>

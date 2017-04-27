@@ -4,8 +4,12 @@
           <a class="navbar-brand">Dokkan</a>
         </div>
         <div class="container">
+            <?php echo $__env->make('admin.modals', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+              <li>
+                  <?php echo $__env->yieldContent('admin_management'); ?>
+              </li>
             <li>
             <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    <label>Artisan</label> <i class="glyphicon glyphicon-plus"></i>

@@ -106,7 +106,7 @@ class ArtisanController extends Controller
       $json=$ar->toJson();
       return response()->json($json);
     }
-<<<<<<< HEAD
+
 function getype()
 {
     $a=Artisan::where('type_id',request('idt'))->get();
@@ -119,7 +119,6 @@ function getRegion()
     $j=$a->toJson();
     return response()->json($j);
 }
-=======
 
     public function findByType(Request $request)
     {
@@ -185,5 +184,5 @@ function getRegion()
         return response($res)->send();
     }
 
->>>>>>> ef896a7ff94731724ed0fd589ae5729955dbacbc
+
 }
